@@ -150,6 +150,7 @@
 				TargetAttributes = {
 					499015D91615FE5300991F6C = {
 						LastSwiftMigration = 1150;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -195,7 +196,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "full_version=$(sw_vers -productVersion)\nmajor_version=$(echo $full_version | awk -F \\. {'print $1'})\nminor_version=$(echo $full_version | awk -F \\. {'print $2'})\n\necho \"macOS v${major_version}.${minor_version}\"\n\nif [ \"$major_version\" -ge \"11\" ] || [ \"$major_version\" -ge \"10\" -a \"$minor_version\" -ge \"12\" ]; then\n    compatibility_key=Supported${major_version}.${minor_version}PluginCompatibilityUUIDs\nelse\n    compatibility_key=SupportedPluginCompatibilityUUIDs\nfi\n\nif [ \"$major_version\" -ge \"11\" ] || [ \"$major_version\" -ge \"10\" -a \"$minor_version\" -ge \"15\" ]; then\n    mail_uuid=$(defaults read /System/Applications/Mail.app/Contents/Info PluginCompatibilityUUID)\nelse\n    mail_uuid=$(defaults read /Applications/Mail.app/Contents/Info PluginCompatibilityUUID)\nfi\n\necho \"UUID for your version of Mail.app: ${mail_uuid}\"\n\nif defaults read ${SOURCE_ROOT}/GMailinator/Info.plist ${compatibility_key} | grep \"${mail_uuid}\" >/dev/null; then\n    echo \"UUID already exists in ${compatibility_key}\"\nelse\n    echo \"Adding UUID to ${compatibility_key}\"\n    defaults write ${SOURCE_ROOT}/GMailinator/Info.plist ${compatibility_key} -array-add \"${mail_uuid}\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -312,6 +312,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -321,6 +323,7 @@
 				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nompute.gmailinator.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = GMailinator;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = mailbundle;
 			};
 			name = Debug;
@@ -329,6 +332,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -338,6 +343,7 @@
 				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nompute.gmailinator.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = GMailinator;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = mailbundle;
 			};
 			name = Release;
