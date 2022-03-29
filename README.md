@@ -46,21 +46,19 @@ Tested with Mail for macOS Big Sur.
 
 ## Allow usage in Big Sur
 
-- Codesign the bundle
+1. Codesign the bundle
 ```
 codesign -s "<Replace with the identity>" -v -f GMailinator.mailbundle/
 ```
-
 Alternatively, you can enable "Automatically manage signing" in Xcode:
-- Under the "Signing and Capabilities" tab (find this by clicking GMailinator root in sidebar)
-- Check "Automatically manage signing"
-- Change "Team" dropdown. You'll need to do some setup if you don't have a team
-- Now mail bundle will automatically be signed on Xcode build
+  - Under the "Signing and Capabilities" tab (find this by clicking GMailinator root in sidebar)
+  - Check "Automatically manage signing"
+  - Change "Team" dropdown. You'll need to do some setup if you don't have a team
+  - Now mail bundle will automatically be signed on Xcode build
 
-
-- Allow in system policy
+2. Allow in system policy
 ```
-spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle
+-spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle
 ```
 
 ## Credits
