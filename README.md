@@ -58,7 +58,7 @@ Alternatively, you can enable "Automatically manage signing" in Xcode:
 
 2. Allow in system policy
 ```
--spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle
+spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle
 ```
 
 ## Credits
